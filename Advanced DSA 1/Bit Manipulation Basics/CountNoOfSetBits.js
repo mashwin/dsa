@@ -1,0 +1,12 @@
+
+// const n = 6;
+const n = 13;
+
+let count = 0;
+for (let i = 0; i < 32; i++) {
+    if (n & (1 << i)) {
+        count += 1;
+    }
+}
+
+console.log('output: ', count);
