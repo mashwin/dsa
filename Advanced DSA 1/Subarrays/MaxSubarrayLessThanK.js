@@ -11,7 +11,7 @@ const A = 5;
 const B = 12;
 const C = [2, 1, 3, 4, 5];
 
-const maxSubarray = (A, B, C) => {
+const maxSubarrayBruteForce = (A, B, C) => {
 
     let ans = Number.NEGATIVE_INFINITY;
     for (let i = 0; i < C.length; i++) {
@@ -29,5 +29,32 @@ const maxSubarray = (A, B, C) => {
     return ans;
 }
 
-const result = maxSubarray(A, B, C);
+const maxSubarraySlidingWindow = (A, B, C) => {
+
+    let start = 0;
+    let end = 0;
+    let sum = 0;
+    let maxSum = 0;
+
+    while (end < A) {
+        sum += C[end];
+        end++;
+
+        while (sum > B && start < end) {
+            sum -= C[start];
+            start++;
+        }
+
+        if (sum > maxSum) {
+            maxSum = sum;
+        }
+    }
+
+    return maxSum;
+}
+
+const result = maxSubarrayBruteForce(A, B, C);
 console.log('result: ', result);
+
+const result1 = maxSubarraySlidingWindow(A, B, C);
+console.log('result1: ', result1);
